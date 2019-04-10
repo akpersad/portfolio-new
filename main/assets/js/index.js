@@ -1,5 +1,3 @@
-debugger;
-
 const test = () => {
 	console.log("hello world");
 };

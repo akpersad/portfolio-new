@@ -12,11 +12,60 @@ const uglify = require("gulp-uglify");
 const eslint = require("gulp-eslint");
 const cleanCSS = require("gulp-clean-css");
 const gulpRename = require("gulp-rename");
+const gulpFile = require("gulp-file");
+const tap = require("gulp-tap");
+const path = require("path");
+const { argv } = require("yargs");
 
 function reload(done) {
 	browserSync.reload();
 	done();
 }
+
+gulp.task("createJS", function() {
+	return gulp.src("./main").pipe(
+		tap(function(file) {
+			const fileName = path.basename(`${argv.fileName}.js`);
+			return gulpFile(fileName, "").pipe(
+				gulp.dest("./main/assets/js/components", { overwrite: false })
+			);
+		})
+	);
+});
+
+gulp.task("createSCSS", function() {
+	return gulp.src("./main").pipe(
+		tap(function(file) {
+			const fileName = path.basename(`_${argv.fileName}.scss`);
+			return gulpFile(fileName, "").pipe(
+				gulp.dest("./main/assets/css/components", { overwrite: false })
+			);
+		})
+	);
+});
+
+gulp.task("updateStyles", function() {
+	return gulp.src("./main").pipe(
+		tap(function(file) {
+			const fileName = path.basename(`style.scss`);
+			const content = `@import "components/${argv.fileName}"`;
+			return gulpFile(fileName, content).pipe(
+				gulp.dest("./main/assets/css/", { append: true })
+			);
+		})
+	);
+});
+
+gulp.task("createHTML", function() {
+	return gulp.src("./main").pipe(
+		tap(function(file) {
+			const fileName = path.basename(`${argv.fileName}.html`);
+			return gulpFile(fileName, "").pipe(
+				gulp.dest("./main/assets/html/components", { overwrite: false })
+			);
+		})
+	);
+});
 
 gulp.task("sass", function() {
 	return (
@@ -156,6 +205,7 @@ gulp.task("linter", () => {
 
 gulp.task("everything", gulp.series(["scripts", "mini", "concat"]));
 gulp.task("loader", gulp.series(["scripts-loader", "mini-loader"]));
+gulp.task("createComp", gulp.series(["createJS", "createSCSS", "updateStyles", "createHTML"]));
 
 gulp.task(
 	"watch",

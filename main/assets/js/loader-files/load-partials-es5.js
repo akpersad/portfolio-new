@@ -2,11 +2,12 @@
 
 (function () {
 	var allDivs = document.querySelector(".main-container").querySelectorAll("div");
-	var componentsLen = allDivs.length;
+	var length = allDivs.length;
+
 	var componentCount = 0;
 	var completedCalls = 0;
 
-	for (var i = 0; componentsLen > i; i++) {
+	for (var i = 0; length > i; i++) {
 		if (allDivs[i].getAttribute("data-load-template")) {
 			componentCount += 1;
 		}
@@ -20,8 +21,9 @@
 			if (request.status >= 200 && request.status < 400) {
 				// Success!
 
-				var resp = request.responseText;
-				element.innerHTML = resp;
+				var responseText = request.responseText;
+
+				element.innerHTML = responseText;
 				completedCalls += 1;
 
 				if (completedCalls === componentCount) {
@@ -42,7 +44,7 @@
 		request.send();
 	};
 
-	for (var j = 0; componentsLen > j; j++) {
+	for (var j = 0; length > j; j++) {
 		if (allDivs[j].getAttribute("data-load-template")) {
 			loadTemplate(allDivs[j], allDivs[j].getAttribute("data-load-template"));
 		}
