@@ -7,7 +7,6 @@ const cssvariables = require("postcss-css-variables");
 const calc = require("postcss-calc");
 const babel = require("gulp-babel");
 const concat = require("gulp-concat");
-const minify = require("gulp-minify");
 const uglify = require("gulp-uglify");
 const eslint = require("gulp-eslint");
 const cleanCSS = require("gulp-clean-css");

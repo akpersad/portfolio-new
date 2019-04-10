@@ -10,8 +10,34 @@
 		<link rel="stylesheet" href="assets/css/dist/style-min.css" />
 		<title>Title</title>
 	</head>
+
 	<body>
-		<div class="main-container">
+		<div class="loading-container">
+			<div class="loading-container_overlay"></div>
+			<div class="loading-container_cogs">
+				<div class="loading-container_cogs__top">
+					<div class="top_part"></div>
+					<div class="top_part"></div>
+					<div class="top_part"></div>
+					<div class="top_hole"></div>
+				</div>
+				<div class="loading-container_cogs__left">
+					<div class="left_part"></div>
+					<div class="left_part"></div>
+					<div class="left_part"></div>
+					<div class="left_hole"></div>
+				</div>
+				<div class="loading-container_cogs__bottom">
+					<div class="bottom_part"></div>
+					<div class="bottom_part"></div>
+					<div class="bottom_part"></div>
+					<div class="bottom_hole"></div>
+				</div>
+				<p class="loading-text text-center">loading...</p>
+			</div>
+		</div>
+
+		<div class="main-container d-none">
 			<h1 class="test">Hello World</h1>
 			<div id="test" data-load-template="./assets/html/components/test.html"></div>
 		</div>
