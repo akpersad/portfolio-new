@@ -1,7 +1,10 @@
 "use strict";
 
+/* eslint-disable func-names */
 (function () {
 	var allDivs = document.querySelector(".main-container").querySelectorAll("div");
+	var loadingContainer = document.querySelector(".loading-container");
+	var mainContainer = document.querySelector(".main-container");
 	var length = allDivs.length;
 
 	var componentCount = 0;
@@ -27,6 +30,9 @@
 				completedCalls += 1;
 
 				if (completedCalls === componentCount) {
+					var displayNone = "d-none";
+					loadingContainer.classList.add(displayNone);
+					mainContainer.classList.remove(displayNone);
 					var bodySelect = document.querySelector("body");
 					var scriptMake = document.createElement("script");
 					scriptMake.src = "assets/js/combined-scripts/combined-scripts.js";

@@ -1,5 +1,8 @@
+/* eslint-disable func-names */
 (function() {
 	const allDivs = document.querySelector(".main-container").querySelectorAll("div");
+	const loadingContainer = document.querySelector(".loading-container");
+	const mainContainer = document.querySelector(".main-container");
 	const { length } = allDivs;
 	let componentCount = 0;
 	let completedCalls = 0;
@@ -23,6 +26,9 @@
 				completedCalls += 1;
 
 				if (completedCalls === componentCount) {
+					const displayNone = "d-none";
+					loadingContainer.classList.add(displayNone);
+					mainContainer.classList.remove(displayNone);
 					const bodySelect = document.querySelector("body");
 					const scriptMake = document.createElement("script");
 					scriptMake.src = "assets/js/combined-scripts/combined-scripts.js";
