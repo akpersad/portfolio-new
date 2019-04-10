@@ -1,10 +1,16 @@
 {
 	"extends": ["airbnb", "prettier"],
 	"plugins": ["prettier"],
+	"env": {
+		"browser": true,
+		"node": true
+	},
 	"rules": {
 		"strict": 0,
 		"no-console": 0,
 		"no-tabs": 0,
+		"no-loop-func": 1,
+		"no-unused-vars": 1,
 		"indent": [
 			0,
 			"tab",
@@ -22,12 +28,6 @@
 			}
 		],
 		"comma-dangle": ["error", "never"],
-		"no-unused-vars": [
-			"error",
-			{
-				"args": "none"
-			}
-		],
 		"max-len": 0,
 		"arrow-body-style": 0,
 		"linebreak-style": 0,

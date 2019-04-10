@@ -58,6 +58,7 @@
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
     "is-module": "^1.0.0",
     "output-file-sync": "^2.0.1",
     "popper.js": "^1.14.7",
