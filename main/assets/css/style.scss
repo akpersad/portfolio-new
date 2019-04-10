@@ -1,6 +1,3 @@
-@import "global";
 // Make sure to include any files from ./components
-
-.test {
-  color: $orange;
-}
+@import "global";
+@import "components/test";
