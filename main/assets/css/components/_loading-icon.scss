@@ -1,13 +1,8 @@
-/* Fonts */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400, 700");
-
-/* Variables */
 
 $font: "Montserrat", sans-serif;
 $heading: rgb(87, 110, 129);
 $sub: #f98db9;
-
-/* Mixins */
 
 @mixin center {
   position: absolute;
@@ -131,8 +126,6 @@ body {
   }
 }
 
-/* Animations */
-
 @keyframes rotate {
   from {
     transform: rotate(0deg);
@@ -159,5 +152,4 @@ body {
     transform: rotate(364deg);
   }
 }
-
 // Special Thanks to https://codepen.io/jcoulterdesign/pen/bNxeKY
