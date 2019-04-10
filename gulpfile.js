@@ -60,7 +60,10 @@ gulp.task("createHTML", function() {
 	return gulp.src("./main").pipe(
 		tap(function(file) {
 			const fileName = path.basename(`${argv.fileName}.html`);
-			return gulpFile(fileName, "").pipe(
+			const content = `<div class="${argv.fileName}-container">
+	<!-- Enter component html here -->
+</div>`;
+			return gulpFile(fileName, content).pipe(
 				gulp.dest("./main/assets/html/components", { overwrite: false })
 			);
 		})
