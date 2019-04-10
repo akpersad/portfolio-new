@@ -11,6 +11,8 @@
 		"no-tabs": 0,
 		"no-loop-func": 1,
 		"no-unused-vars": 1,
+		"no-undef": 1,
+		"func-names": 0,
 		"indent": [
 			0,
 			"tab",

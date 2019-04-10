@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 const gulp = require("gulp");
 const sass = require("gulp-sass");
 const browserSync = require("browser-sync").create();
@@ -36,7 +37,8 @@ gulp.task("createSCSS", function() {
 	return gulp.src("./main").pipe(
 		tap(function(file) {
 			const fileName = path.basename(`_${argv.fileName}.scss`);
-			return gulpFile(fileName, "").pipe(
+			const content = `#${argv.fileName}{}`;
+			return gulpFile(fileName, content).pipe(
 				gulp.dest("./main/assets/css/components", { overwrite: false })
 			);
 		})
@@ -47,7 +49,7 @@ gulp.task("updateStyles", function() {
 	return gulp.src("./main").pipe(
 		tap(function(file) {
 			const fileName = path.basename(`style.scss`);
-			const content = `@import "components/${argv.fileName}"`;
+			const content = `@import "components/${argv.fileName}";`;
 			return gulpFile(fileName, content).pipe(
 				gulp.dest("./main/assets/css/", { append: true })
 			);
