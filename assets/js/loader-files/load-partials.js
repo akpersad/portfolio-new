@@ -1,10 +1,10 @@
 (function() {
 	const allDivs = document.querySelector(".main-container").querySelectorAll("div");
-	const componentsLen = allDivs.length;
+	const { length } = allDivs;
 	let componentCount = 0;
 	let completedCalls = 0;
 
-	for (let i = 0; componentsLen > i; i++) {
+	for (let i = 0; length > i; i++) {
 		if (allDivs[i].getAttribute("data-load-template")) {
 			componentCount += 1;
 		}
@@ -18,8 +18,8 @@
 			if (request.status >= 200 && request.status < 400) {
 				// Success!
 
-				const resp = request.responseText;
-				element.innerHTML = resp;
+				const { responseText } = request;
+				element.innerHTML = responseText;
 				completedCalls += 1;
 
 				if (completedCalls === componentCount) {
@@ -40,7 +40,7 @@
 		request.send();
 	};
 
-	for (let j = 0; componentsLen > j; j++) {
+	for (let j = 0; length > j; j++) {
 		if (allDivs[j].getAttribute("data-load-template")) {
 			loadTemplate(allDivs[j], allDivs[j].getAttribute("data-load-template"));
 		}

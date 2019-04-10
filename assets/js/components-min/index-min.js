@@ -1,1 +1,1 @@
-"use strict";debugger;var test=function(){console.log("hello world")};test();
+"use strict";var test=function(){console.log("hello world")};test();
