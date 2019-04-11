@@ -1,14 +1,14 @@
 "use strict";
 
 (function () {
-	var themeSwitch = document.getElementById("themeSwitch");
-	var mainHeader = document.getElementsByClassName("js-main-header")[0];
+	var lightSwitch = document.querySelector("#lightSwitch");
+	var mainHeader = document.querySelector(".js-main-header");
 	// Theme switch
 	if (window.CSS && CSS.supports("color", "var(--fake-var)")) {
 		var initTheme = function initTheme() {
-			var darkThemeSelected = localStorage.getItem("themeSwitch") !== null && localStorage.getItem("themeSwitch") === "dark";
+			var darkThemeSelected = localStorage.getItem("lightSwitch") !== null && localStorage.getItem("lightSwitch") === "dark";
 			// update checkbox
-			themeSwitch.checked = darkThemeSelected;
+			lightSwitch.checked = darkThemeSelected;
 			// update body data-theme attribute
 			if (darkThemeSelected) {
 				document.body.setAttribute("data-theme", "dark");
@@ -18,24 +18,24 @@
 		};
 
 		var resetTheme = function resetTheme() {
-			if (themeSwitch.checked) {
+			if (lightSwitch.checked) {
 				// dark theme has been selected
 				document.body.setAttribute("data-theme", "dark");
-				localStorage.setItem("themeSwitch", "dark");
+				localStorage.setItem("lightSwitch", "dark");
 			} else {
 				document.body.removeAttribute("data-theme");
-				localStorage.removeItem("themeSwitch");
+				localStorage.removeItem("lightSwitch");
 			}
 		};
 
-		if (themeSwitch) {
+		if (lightSwitch) {
 			initTheme(); // if user has already selected a specific theme -> apply it
-			themeSwitch.addEventListener("change", function () {
+			lightSwitch.addEventListener("change", function () {
 				resetTheme(); // update color theme
 			});
 		}
 	} else {
-		themeSwitch.parentElement.style.display = "none";
+		lightSwitch.parentElement.style.display = "none";
 	}
 
 	// Main Header component JS
