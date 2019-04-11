@@ -1,6 +1,6 @@
 (function() {
-	const themeSwitch = document.getElementById("themeSwitch");
-	const mainHeader = document.getElementsByClassName("js-main-header")[0];
+	const themeSwitch = document.querySelector("#themeSwitch");
+	const mainHeader = document.querySelector(".js-main-header");
 	// Theme switch
 	if (window.CSS && CSS.supports("color", "var(--fake-var)")) {
 		const initTheme = () => {
