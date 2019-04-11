@@ -1,8 +1,8 @@
 "use strict";
 
 (function () {
-	var themeSwitch = document.getElementById("themeSwitch");
-	var mainHeader = document.getElementsByClassName("js-main-header")[0];
+	var themeSwitch = document.querySelector("#themeSwitch");
+	var mainHeader = document.querySelector(".js-main-header");
 	// Theme switch
 	if (window.CSS && CSS.supports("color", "var(--fake-var)")) {
 		var initTheme = function initTheme() {
