@@ -1,0 +1,16 @@
+#logo-comp {
+  svg {
+    height: 50px;
+    position: fixed;
+    top: 15px;
+    z-index: 1000;
+    left: -26vw;
+    @include breakpoint(sm-only) {
+      left: 35vw;
+    }
+    polyline,
+    path {
+      stroke: var(--color-primary);
+    }
+  }
+}
