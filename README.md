@@ -16,6 +16,7 @@ gulp createComp --fileName {Component Name}
 To push to github pages:
 
 ```
+git add main && git commit -m "Initial main subtree commit"
 git subtree push --prefix main origin gh-pages
 ```
 
