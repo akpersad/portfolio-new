@@ -1,5 +1,10 @@
 // Make sure to include any files from ./components
 @import "global";
+
+body {
+  transition: $transition-time;
+}
+
 @import "components/loading-icon";
 @import "components/test";
 @import "components/main-header";
