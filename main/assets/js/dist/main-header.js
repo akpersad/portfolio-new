@@ -43,6 +43,7 @@
 		var trigger = mainHeader.getElementsByClassName("js-main-header__nav-trigger")[0];
 		var nav = mainHeader.getElementsByClassName("js-main-header__nav")[0];
 		// detect click on nav trigger
+		// debugger;
 		trigger.addEventListener("click", function (event) {
 			event.preventDefault();
 			var ariaExpanded = !Util.hasClass(nav, "main-header__nav--is-visible");
