@@ -17,6 +17,7 @@
   @include defineColorHSL(--color-white, 0, 0%, 100%);
   @include defineColorHSL(--color-white-dark, 0, 0%, 90%);
   @include defineColorHSL(--color-white-darker, 0, 0%, 80%);
+  @include defineColorHSL(--color-opposite, 240, 8%, 12%);
 
   // feedback
   @include defineColorHSL(--color-warning-darker, 46, 100%, 41%);
@@ -70,6 +71,7 @@
     @include defineColorHSL(--color-white, 0, 0%, 100%);
     @include defineColorHSL(--color-white-dark, 0, 0%, 90%);
     @include defineColorHSL(--color-white-darker, 0, 0%, 80%);
+    @include defineColorHSL(--color-opposite, 0, 0%, 100%);
 
     // feedback
     @include defineColorHSL(--color-warning-darker, 46, 100%, 41%);
