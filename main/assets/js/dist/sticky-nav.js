@@ -1,13 +1,22 @@
 "use strict";
 
 var sections = document.querySelector(".sections").querySelectorAll("section");
-var nav = document.querySelectorAll("nav")[1];
+var nav = document.querySelector("#sticky-nav_nav");
 var navHeight = nav.offsetHeight;
+var navTop = nav.offsetTop;
+
+var stickykNav = function stickykNav() {
+	if (window.pageYOffset >= navTop) {
+		nav.classList.add("position-fixed");
+	} else {
+		nav.classList.remove("position-fixed");
+	}
+};
 
 window.addEventListener("scroll", function (event) {
 	var curPos = this.pageYOffset;
 	var len = sections.length;
-	var element = event.target;
+	stickykNav();
 	for (var i = 0; i < len; i++) {
 		var top = sections[i].offsetTop - navHeight;
 		var bottom = top + sections[i].offsetHeight;
@@ -22,6 +31,7 @@ window.addEventListener("scroll", function (event) {
 		}
 		// else if (element.scrollHeight - element.scrollTop === element.clientHeight) {
 		// 	console.log("Hello");
+		// document.querySelector('.sections').scrollHeight - document.querySelector('.sections').scrollTop === document.querySelector('.sections').clientHeight
 		// }
 	}
 });

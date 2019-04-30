@@ -59,9 +59,18 @@
 })();
 
 /* exported scrollToElement */
-var scrollToElement = function scrollToElement(element) {
-	var elementId = element.getAttribute("data-scrollTo");
-	document.querySelector("#" + elementId).scrollIntoView({
+var scrollToElement = function scrollToElement(targetElement) {
+	var elementId = targetElement.getAttribute("data-scrollTo");
+	var element = document.querySelector("#" + elementId);
+	var nav = document.querySelector("#sticky-nav_nav");
+	var offset = nav.offsetHeight;
+	var bodyRect = document.body.getBoundingClientRect().top;
+	var elementRect = element.getBoundingClientRect().top;
+	var elementPosition = elementRect - bodyRect;
+	var offsetPosition = elementPosition - offset;
+
+	window.scrollTo({
+		top: offsetPosition,
 		behavior: "smooth"
 	});
 };
