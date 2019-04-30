@@ -17,6 +17,9 @@
     background-color: var(--color-bg);
     border-bottom: 1px solid var(--color-contrast-low);
     z-index: $zindex-main-header;
+    @include breakpoint(sm-only) {
+      height: 100px;
+    }
     @include breakpoint(md) {
       height: var(--main-header-height-md);
     }
@@ -54,6 +57,9 @@
       &-label {
         color: var(--color-contrast-medium);
         margin-bottom: var(--space-xs);
+        @include breakpoint(sm-only) {
+          display: none;
+        }
         @include breakpoint(md) {
           position: absolute;
           clip: rect(1px, 1px, 1px, 1px);
@@ -130,6 +136,11 @@
             }
           }
         }
+      }
+    }
+    .nav-item_display-web-only {
+      @include breakpoint(sm-only) {
+        display: none;
       }
     }
   }
