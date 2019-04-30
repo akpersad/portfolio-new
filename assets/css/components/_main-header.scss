@@ -11,6 +11,21 @@
 }
 
 #main-header {
+  svg#errr {
+    height: 50px;
+    position: relative;
+    top: 15px;
+    z-index: 1000;
+    left: -26vw;
+    @include breakpoint(sm-only) {
+      left: 35vw;
+    }
+    polyline,
+    path {
+      stroke: var(--color-primary);
+    }
+  }
+
   .main-header {
     transition: $transition-time;
     position: relative;
