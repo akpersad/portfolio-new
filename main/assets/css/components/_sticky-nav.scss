@@ -1,0 +1,53 @@
+#sticky-nav {
+  nav {
+    width: 100%;
+    height: 60px;
+    background: #1abc9c;
+    top: 0;
+    z-index: $zindex-sticky-header;
+    ul {
+      padding: 20px;
+      margin: 0 auto;
+      list-style: none;
+      text-align: center;
+      li {
+        display: inline-block;
+        margin: 0 10px;
+        a {
+          padding: 10px 0;
+          color: #fff;
+          font-size: 1rem;
+          text-decoration: none;
+          font-weight: bold;
+          transition: all 0.4s ease;
+          &:hover {
+            color: #34495e;
+          }
+          &.active {
+            border-bottom: 2px solid #ecf0f1;
+          }
+        }
+      }
+    }
+  }
+}
+// PLACEHHOLDER CSS FOR SECTIONS
+/* Sections */
+
+.sections section {
+  width: 100%;
+  padding: 50px;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  height: 500px;
+  text-align: center;
+  &:nth-child(even) {
+    background: var(--color-primary);
+  }
+  &:nth-child(odd) {
+    background: var(--color-accent);
+  }
+  &::first-child {
+    margin-top: 60px;
+  }
+}
