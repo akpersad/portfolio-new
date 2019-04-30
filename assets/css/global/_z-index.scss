@@ -1,9 +1,15 @@
 :root {
-    --zindex-header: 2;
-    --zindex-popover: 4;
-    --zindex-fixed-element: 5;
-    --zindex-overlay: 10; // modals and dialogs
+  --zindex-main-header: 12;
+  --zindex-sticky-header: 11;
+  --zindex-welcome-chevron: 10;
+  --zindex-popover: 4;
+  --zindex-fixed-element: 5;
+  --zindex-overlay: 10; // modals and dialogs
 }
+
+$zindex-main-header: 12;
+$zindex-sticky-header: 11;
+$zindex-welcome-chevron: 10;
 
 $zindex-zero: 0;
 $zindex-lowest: 1;
