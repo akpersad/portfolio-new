@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 /* eslint-disable func-names */
 const gulp = require("gulp");
 const sass = require("gulp-sass");
@@ -48,7 +50,7 @@ gulp.task("createSCSS", function() {
 gulp.task("updateStyles", function() {
 	return gulp.src("./main").pipe(
 		tap(function(file) {
-			const fileName = path.basename(`style.scss`);
+			const fileName = path.basename("style.scss");
 			const content = `@import "components/${argv.fileName}";`;
 			return gulpFile(fileName, content).pipe(
 				gulp.dest("./main/assets/css/", { append: true })
@@ -79,7 +81,7 @@ gulp.task("sass", function() {
 				"main/assets/css/style.scss",
 				"node_modules/bootstrap/scss/bootstrap.scss"
 			])
-			//Use Expanded for full output of CSS. Use Compressed for minified version
+			// Use Expanded for full output of CSS. Use Compressed for minified version
 			.pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
 			.pipe(
 				gulpRename(path => {

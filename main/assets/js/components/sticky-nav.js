@@ -11,6 +11,21 @@ const stickykNav = () => {
 	}
 };
 
+const isScrolledBottom = () => {
+	const pageHeight = document.documentElement.offsetHeight;
+	const windowHeight = window.innerHeight;
+	const scrollPosition =
+		window.scrollY ||
+		window.pageYOffset ||
+		document.body.scrollTop +
+			((document.documentElement && document.documentElement.scrollTop) || 0);
+
+	if (pageHeight <= windowHeight + scrollPosition) {
+		return true;
+	}
+	return false;
+};
+
 window.addEventListener("scroll", function(event) {
 	const curPos = this.pageYOffset;
 	const len = sections.length;
@@ -18,18 +33,16 @@ window.addEventListener("scroll", function(event) {
 	for (let i = 0; i < len; i++) {
 		const top = sections[i].offsetTop - navHeight;
 		const bottom = top + sections[i].offsetHeight;
+		const anchorTags = nav.querySelectorAll("a");
 
 		if (curPos >= top && curPos <= bottom) {
-			console.log(sections[i]);
-			const anchorTags = nav.querySelectorAll("a");
 			for (let j = 0; j < anchorTags.length; j++) {
 				anchorTags[j].classList.remove("active");
 			}
 			document.querySelector(`a.${sections[i].id}`).classList.add("active");
+		} else if (isScrolledBottom()) {
+			anchorTags[len - 2].classList.remove("active");
+			document.querySelector(`a.${sections[len - 1].id}`).classList.add("active");
 		}
-		// else if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-		// 	console.log("Hello");
-		// document.querySelector('.sections').scrollHeight - document.querySelector('.sections').scrollTop === document.querySelector('.sections').clientHeight
-		// }
 	}
 });

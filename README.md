@@ -1,19 +1,22 @@
 Built off of Cody House: https://github.com/CodyHouse/codyhouse-framework
+Many Thanks!
 
 TO RUN:
 
 ```
 npm install
-npm run gulp watch
+gulp watch
 ```
 
-To create new components
+To create new components:
 
 ```
 gulp createComp --fileName {Component Name}
 ```
 
 To push to github pages:
+
+<!-- First line only to be used on initial push -->
 
 ```
 git add main && git commit -m "Initial main subtree commit"
