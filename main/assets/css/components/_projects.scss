@@ -1,0 +1,19 @@
+#projects {
+  .projects-container {
+    padding-left: 5%;
+    .parallelogram {
+      width: 30%;
+      transform: skew(-20deg);
+      background: red;
+      margin-left: 5px;
+      margin-right: 5px;
+      transition: 1s;
+      &.smaller-width {
+        width: 20% !important;
+      }
+      &.larger-width {
+        width: 50% !important;
+      }
+    }
+  }
+}

@@ -39,7 +39,8 @@ gulp.task("createSCSS", function() {
 	return gulp.src("./main").pipe(
 		tap(function(file) {
 			const fileName = path.basename(`_${argv.fileName}.scss`);
-			const content = `#${argv.fileName}{}`;
+			const content = `#${argv.fileName}{}
+`;
 			return gulpFile(fileName, content).pipe(
 				gulp.dest("./main/assets/css/components", { overwrite: false })
 			);
