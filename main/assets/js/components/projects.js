@@ -8,11 +8,11 @@ const hoverEvent = element => {
 	for (let i = 0; i < shapes.length; i++) {
 		const loopElement = shapes[i];
 		if (loopElement.id !== idName) {
-			loopElement.classList.add("smaller-width");
-			loopElement.classList.remove("larger-width");
+			loopElement.classList.add("smaller-size");
+			loopElement.classList.remove("larger-size");
 		} else {
-			loopElement.classList.remove("smaller-width");
-			loopElement.classList.add("larger-width");
+			loopElement.classList.remove("smaller-size");
+			loopElement.classList.add("larger-size");
 		}
 	}
 };
@@ -22,7 +22,7 @@ const removeHoverEvent = () => {
 	const shapes = document.querySelectorAll(shapesClass);
 	for (let i = 0; i < shapes.length; i++) {
 		const loopElement = shapes[i];
-		loopElement.classList.remove("larger-width");
-		loopElement.classList.remove("smaller-width");
+		loopElement.classList.remove("larger-size");
+		loopElement.classList.remove("smaller-size");
 	}
 };

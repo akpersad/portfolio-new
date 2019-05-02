@@ -1,18 +1,40 @@
 #projects {
   .projects-container {
     padding-left: 5%;
+    @include breakpoint(sm-only) {
+      flex-direction: column;
+      flex-flow: wrap;
+      padding-left: 0;
+    }
     .parallelogram {
       width: 30%;
+      height: 100%;
       transform: skew(-20deg);
       background: red;
       margin-left: 5px;
       margin-right: 5px;
       transition: 1s;
-      &.smaller-width {
-        width: 20% !important;
+      &.smaller-size {
+        width: 10% !important;
+        @include breakpoint(sm-only) {
+          height: 10% !important;
+          width: 100% !important;
+        }
       }
-      &.larger-width {
-        width: 50% !important;
+      &.larger-size {
+        width: 70% !important;
+        @include breakpoint(sm-only) {
+          height: 70%;
+          width: 100% !important;
+        }
+      }
+      .test234 {
+        transform: skew(20deg);
+      }
+      @include breakpoint(sm-only) {
+        height: 30%;
+        width: 100%;
+        transform: skew(0);
       }
     }
   }

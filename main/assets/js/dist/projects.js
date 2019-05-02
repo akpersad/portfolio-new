@@ -10,11 +10,11 @@ var hoverEvent = function hoverEvent(element) {
 	for (var i = 0; i < shapes.length; i++) {
 		var loopElement = shapes[i];
 		if (loopElement.id !== idName) {
-			loopElement.classList.add("smaller-width");
-			loopElement.classList.remove("larger-width");
+			loopElement.classList.add("smaller-size");
+			loopElement.classList.remove("larger-size");
 		} else {
-			loopElement.classList.remove("smaller-width");
-			loopElement.classList.add("larger-width");
+			loopElement.classList.remove("smaller-size");
+			loopElement.classList.add("larger-size");
 		}
 	}
 };
@@ -24,7 +24,7 @@ var removeHoverEvent = function removeHoverEvent() {
 	var shapes = document.querySelectorAll(shapesClass);
 	for (var i = 0; i < shapes.length; i++) {
 		var loopElement = shapes[i];
-		loopElement.classList.remove("larger-width");
-		loopElement.classList.remove("smaller-width");
+		loopElement.classList.remove("larger-size");
+		loopElement.classList.remove("smaller-size");
 	}
 };
