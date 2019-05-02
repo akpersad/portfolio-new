@@ -74,31 +74,3 @@ var scrollToElement = function scrollToElement(targetElement) {
 		behavior: "smooth"
 	});
 };
-
-// const isInViewport = elem => {
-// 	const bounding = elem.getBoundingClientRect();
-// 	return (
-// 		bounding.top >= 0 &&
-// 		bounding.left >= 0 &&
-// 		bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-// 		bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-// 	);
-// };
-
-// const section1 = document.querySelector("#test1234");
-// const section2 = document.querySelector("#test12345");
-// const section3 = document.querySelector("#test12346");
-
-// window.addEventListener(
-// 	"scroll",
-// 	function() {
-// 		if (isInViewport(section1)) {
-// 			console.log("IN VIEW 1");
-// 		} else if (isInViewport(section2)) {
-// 			console.log("IN VIEW 2");
-// 		} else if (isInViewport(section3)) {
-// 			console.log("IN VIEW 3");
-// 		}
-// 	},
-// 	false
-// );
