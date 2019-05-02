@@ -59,20 +59,3 @@
 		});
 	}
 })();
-
-/* exported scrollToElement */
-const scrollToElement = targetElement => {
-	const elementId = targetElement.getAttribute("data-scrollTo");
-	const element = document.querySelector(`#${elementId}`);
-	const nav = document.querySelector("#sticky-nav_nav");
-	const offset = nav.offsetHeight;
-	const bodyRect = document.body.getBoundingClientRect().top;
-	const elementRect = element.getBoundingClientRect().top;
-	const elementPosition = elementRect - bodyRect;
-	const offsetPosition = elementPosition - offset;
-
-	window.scrollTo({
-		top: offsetPosition,
-		behavior: "smooth"
-	});
-};

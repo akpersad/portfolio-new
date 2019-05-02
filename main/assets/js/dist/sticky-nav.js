@@ -24,6 +24,21 @@ var isScrolledBottom = function isScrolledBottom() {
 	return false;
 };
 
+/* exported scrollToElement */
+var scrollToElement = function scrollToElement(targetElement) {
+	var elementId = targetElement.getAttribute("data-scrollTo");
+	var element = document.querySelector("#" + elementId);
+	var bodyRect = document.body.getBoundingClientRect().top;
+	var elementRect = element.getBoundingClientRect().top;
+	var elementPosition = elementRect - bodyRect;
+	var offsetPosition = elementPosition - navHeight - (window.pageYOffset >= navTop ? 0 : navHeight);
+
+	window.scrollTo({
+		top: offsetPosition,
+		behavior: "smooth"
+	});
+};
+
 window.addEventListener("scroll", function (event) {
 	var curPos = this.pageYOffset;
 	var len = sections.length;
