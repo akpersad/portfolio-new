@@ -30,6 +30,9 @@
       }
       .test234 {
         transform: skew(20deg);
+        @include breakpoint(sm-only) {
+          transform: skew(0);
+        }
       }
       @include breakpoint(sm-only) {
         height: 30%;
