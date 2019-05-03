@@ -36,7 +36,7 @@
         }
       }
       &.larger-size {
-        width: 70% !important;
+        width: 65% !important;
         @include breakpoint(sm-only) {
           height: 70%;
           width: 100% !important;
