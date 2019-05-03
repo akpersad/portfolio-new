@@ -10,12 +10,26 @@
       width: 30%;
       height: 100%;
       transform: skew(-20deg);
-      background: red;
+      background: var(--color-primary);
       margin-left: 5px;
       margin-right: 5px;
       transition: 1s;
       &.smaller-size {
         width: 10% !important;
+        .smaller-size_text {
+          font-size: 2rem;
+          display: block !important;
+          @include breakpoint(md) {
+            transform: rotate(200deg);
+            font-size: 5rem;
+            writing-mode: vertical-lr;
+            text-orientation: sideways-right;
+            position: relative;
+            left: -25px;
+            top: 100px;
+            transition: 1s;
+          }
+        }
         @include breakpoint(sm-only) {
           height: 10% !important;
           width: 100% !important;
@@ -30,6 +44,10 @@
       }
       .test234 {
         transform: skew(20deg);
+        .smaller-size_text {
+          display: none;
+          transition: 1s;
+        }
         @include breakpoint(sm-only) {
           transform: skew(0);
         }

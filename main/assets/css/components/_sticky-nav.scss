@@ -23,6 +23,7 @@
           transition: all 0.4s ease;
           &:hover {
             color: #34495e;
+            cursor: pointer;
           }
           &.active {
             border-bottom: 2px solid #ecf0f1;
@@ -43,10 +44,10 @@
   height: 500px;
   text-align: center;
   &:nth-child(even) {
-    background: var(--color-primary);
+    background: var(--color-contrast-medium);
   }
   &:nth-child(odd) {
-    background: var(--color-accent);
+    background: var(--color-white-dark);
   }
   &::first-child {
     margin-top: 60px;
