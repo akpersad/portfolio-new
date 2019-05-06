@@ -1,12 +1,10 @@
 "use strict";
 
 var hoverEvent = function hoverEvent(element) {
-	console.log(element);
 	var className = element.classList[0];
 	var idName = element.id;
 
 	var shapes = document.querySelectorAll("." + className);
-	// debugger;
 	for (var i = 0; i < shapes.length; i++) {
 		var loopElement = shapes[i];
 		if (loopElement.id !== idName) {

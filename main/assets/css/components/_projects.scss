@@ -30,6 +30,9 @@
             transition: 1s;
           }
         }
+        .onload-size_text {
+          display: none !important;
+        }
         @include breakpoint(sm-only) {
           height: 10% !important;
           width: 100% !important;
@@ -37,13 +40,19 @@
       }
       &.larger-size {
         width: 65% !important;
+        .onload-size_text {
+          display: none !important;
+        }
         @include breakpoint(sm-only) {
           height: 70%;
           width: 100% !important;
         }
       }
-      .test234 {
+      .parallelogram-section {
         transform: skew(20deg);
+        .onload-size_text {
+          display: block;
+        }
         .smaller-size_text {
           display: none;
           transition: 1s;

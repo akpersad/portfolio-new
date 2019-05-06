@@ -1,10 +1,8 @@
 const hoverEvent = element => {
-	console.log(element);
 	const className = element.classList[0];
 	const idName = element.id;
 
 	const shapes = document.querySelectorAll(`.${className}`);
-	// debugger;
 	for (let i = 0; i < shapes.length; i++) {
 		const loopElement = shapes[i];
 		if (loopElement.id !== idName) {

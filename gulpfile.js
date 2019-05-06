@@ -185,7 +185,10 @@ gulp.task("mini-loader", function() {
 
 gulp.task("concat", function() {
 	return gulp
-		.src(["main/assets/js/components-min/*-min.js"])
+		.src([
+			"main/assets/js/components-min/util-min.js",
+			"main/assets/js/components-min/*-min.js"
+		])
 		.pipe(concat("combined-scripts.js"))
 		.pipe(gulp.dest("main/assets/js/combined-scripts"));
 });
