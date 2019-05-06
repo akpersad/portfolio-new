@@ -198,6 +198,7 @@ gulp.task("linter", () => {
 		gulp
 			.src([
 				"main/assets/js/index.js",
+				"main/assets/js/util.js",
 				"main/assets/js/components/*.js",
 				"main/assets/js/loader-files/load-partials.js"
 			])
@@ -228,6 +229,7 @@ gulp.task(
 		gulp.watch("main/assets/js/load-partials.js", gulp.series(["linter"]));
 		gulp.watch("main/assets/js/components/*.js", gulp.series(["linter"]));
 		gulp.watch("main/assets/js/index.js", gulp.series(["scripts"]));
+		gulp.watch("main/assets/js/util.js", gulp.series(["scripts"]));
 		gulp.watch("main/assets/js/load-partials.js", gulp.series(["scripts"]));
 		gulp.watch("main/assets/js/components/*.js", gulp.series(["scripts"]));
 		gulp.watch("main/assets/js/dist/*.js", gulp.series(["mini"]));

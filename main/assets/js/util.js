@@ -1,17 +1,19 @@
 // Utility function
-function Util() {}
+const Util = () => {};
 
 /*
 	class manipulation functions
 */
-Util.hasClass = function(el, className) {
+// Inputs: HTML ELement, String
+Util.hasClass = (el, className) => {
 	if (el.classList) {
 		return el.classList.contains(className);
 	}
 	return !!el.className.match(new RegExp(`(\\s|^)${className}(\\s|$)`));
 };
 
-Util.addClass = function(el, className) {
+// Inputs: HTML ELement, String
+Util.addClass = (el, className) => {
 	const classList = className.split(" ");
 	if (el.classList) {
 		el.classList.add(classList[0]);
@@ -23,7 +25,8 @@ Util.addClass = function(el, className) {
 	}
 };
 
-Util.removeClass = function(el, className) {
+// Inputs: HTML ELement, String
+Util.removeClass = (el, className) => {
 	const classList = className.split(" ");
 	if (el.classList) {
 		el.classList.remove(classList[0]);
@@ -36,25 +39,31 @@ Util.removeClass = function(el, className) {
 	}
 };
 
-Util.toggleClass = function(el, className, bool) {
+// Inputs: HTML ELement, String, Boolean
+Util.toggleClass = (el, className, bool) => {
 	if (bool) Util.addClass(el, className);
 	else Util.removeClass(el, className);
 };
 
-Util.setAttributes = function(el, attrs) {
-	for (let key in attrs) {
-		el.setAttribute(key, attrs[key]);
+// Inputs: HTML ELement, Object
+Util.setAttributes = (el, attrs) => {
+	for (const key in attrs) {
+		if (attrs[key]) {
+			el.setAttribute(key, attrs[key]);
+		}
 	}
 };
 
 /*
   DOM manipulation
 */
-Util.getChildrenByClassName = function(el, className) {
-	var children = el.children,
-		childrenByClass = [];
-	for (var i = 0; i < el.children.length; i++) {
-		if (Util.hasClass(el.children[i], className)) childrenByClass.push(el.children[i]);
+// Inputs: HTML ELement, String
+Util.getChildrenByClassName = (el, className) => {
+	const childrenByClass = [];
+	for (let i = 0; i < el.children.length; i++) {
+		if (Util.hasClass(el.children[i], className)) {
+			childrenByClass.push(el.children[i]);
+		}
 	}
 	return childrenByClass;
 };
@@ -62,15 +71,20 @@ Util.getChildrenByClassName = function(el, className) {
 /*
 	Animate height of an element
 */
-Util.setHeight = function(start, to, element, duration, cb) {
-	var change = to - start,
-		currentTime = null;
+// Inputs: Integer, Integer, HTML ELement, Integer, Function
+Util.setHeight = (start, to, element, duration, cb) => {
+	const change = to - start;
+	let currentTime;
 
-	var animateHeight = function(timestamp) {
-		if (!currentTime) currentTime = timestamp;
-		var progress = timestamp - currentTime;
-		var val = parseInt((progress / duration) * change + start);
-		element.setAttribute("style", "height:" + val + "px;");
+	const animateHeight = timestamp => {
+		if (!currentTime) {
+			currentTime = timestamp;
+		}
+		const progress = timestamp - currentTime;
+		const parseIntValue = (progress / duration) * (change + start);
+		const val = parseInt(parseIntValue, 10);
+
+		element.setAttribute("style", `height:${val}px;`);
 		if (progress < duration) {
 			window.requestAnimationFrame(animateHeight);
 		} else {
@@ -78,29 +92,35 @@ Util.setHeight = function(start, to, element, duration, cb) {
 		}
 	};
 
-	//set the height of the element before starting animation -> fix bug on Safari
-	element.setAttribute("style", "height:" + start + "px;");
+	// set the height of the element before starting animation -> fix bug on Safari
+	element.setAttribute("style", `height:${start}px;`);
 	window.requestAnimationFrame(animateHeight);
 };
 
 /*
 	Smooth Scroll
 */
+// Inputs: Integer, Integer, Function
+Util.scrollTo = (final, duration, cb) => {
+	const start = window.scrollY || document.documentElement.scrollTop;
+	let currentTime;
 
-Util.scrollTo = function(final, duration, cb) {
-	var start = window.scrollY || document.documentElement.scrollTop,
-		currentTime = null;
+	const animateScroll = timestamp => {
+		if (!currentTime) {
+			currentTime = timestamp;
+		}
+		let progress = timestamp - currentTime;
+		if (progress > duration) {
+			progress = duration;
+		}
+		const val = Math.easeInOutQuad(progress, start, final - start, duration);
 
-	var animateScroll = function(timestamp) {
-		if (!currentTime) currentTime = timestamp;
-		var progress = timestamp - currentTime;
-		if (progress > duration) progress = duration;
-		var val = Math.easeInOutQuad(progress, start, final - start, duration);
 		window.scrollTo(0, val);
+
 		if (progress < duration) {
 			window.requestAnimationFrame(animateScroll);
 		} else {
-			cb && cb();
+			cb();
 		}
 	};
 
@@ -110,10 +130,9 @@ Util.scrollTo = function(final, duration, cb) {
 /*
   Focus utility classes
 */
-
-//Move focus to an element
-Util.moveFocus = function(element) {
-	if (!element) element = document.getElementsByTagName("body")[0];
+// Move focus to an element
+// Inputs: HTML ELement
+Util.moveFocus = element => {
 	element.focus();
 	if (document.activeElement !== element) {
 		element.setAttribute("tabindex", "-1");
@@ -124,26 +143,15 @@ Util.moveFocus = function(element) {
 /*
   Misc
 */
-
-Util.getIndexInArray = function(array, el) {
+// Inputs: Array, HTML ELement
+Util.getIndexInArray = (array, el) => {
 	return Array.prototype.indexOf.call(array, el);
-};
-
-Util.cssSupports = function(property, value) {
-	if ("CSS" in window) {
-		return CSS.supports(property, value);
-	} else {
-		var jsProperty = property.replace(/-([a-z])/g, function(g) {
-			return g[1].toUpperCase();
-		});
-		return jsProperty in document.body.style;
-	}
 };
 
 /*
 	Polyfills
 */
-//Closest() method
+// Closest() method
 // if (!Element.prototype.matches) {
 // 	Element.prototype.matches =
 // 		Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
