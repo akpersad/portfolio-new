@@ -69,6 +69,10 @@ Util.getChildrenByClassName = function (el, className) {
 	return childrenByClass;
 };
 
+Util.getAllChildrenNodes = function (element) {
+	return element.querySelectorAll("*");
+};
+
 /*
 	Animate height of an element
 */

@@ -1,5 +1,5 @@
 /* eslint-disable func-names */
-(function() {
+(() => {
 	const allDivs = document.querySelector(".main-container").querySelectorAll("div");
 	const loadingContainer = document.querySelector(".loading-container");
 	const mainContainer = document.querySelector(".main-container");
@@ -17,7 +17,7 @@
 		const request = new XMLHttpRequest();
 		request.open("GET", templatePath, true);
 
-		request.onload = function() {
+		request.onload = () => {
 			if (request.status >= 200 && request.status < 400) {
 				// Success!
 
@@ -39,7 +39,7 @@
 			}
 		};
 
-		request.onerror = function() {
+		request.onerror = () => {
 			// There was a connection error of some sort
 		};
 
