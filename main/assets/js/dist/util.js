@@ -1,199 +1,237 @@
 "use strict";
 
-// Utility function
-var Util = function Util() {};
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-/*
-	class manipulation functions
-*/
-// Inputs: HTML ELement, String
-Util.hasClass = function (el, className) {
-	if (el.classList) {
-		return el.classList.contains(className);
-	}
-	return !!el.className.match(new RegExp("(\\s|^)" + className + "(\\s|$)"));
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// Inputs: HTML ELement, String
-Util.addClass = function (el, className) {
-	var classList = className.split(" ");
-	if (el.classList) {
-		el.classList.add(classList[0]);
-	} else if (!Util.hasClass(el, classList[0])) {
-		el.className += " " + classList[0];
-	}
-	if (classList.length > 1) {
-		Util.addClass(el, classList.slice(1).join(" "));
-	}
-};
+// eslint-disable-line semi
+var Util = function () {
+	function Util() {
+		var inputs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "No Arguements Passed";
 
-// Inputs: HTML ELement, String
-Util.removeClass = function (el, className) {
-	var classList = className.split(" ");
-	if (el.classList) {
-		el.classList.remove(classList[0]);
-	} else if (Util.hasClass(el, classList[0])) {
-		var reg = new RegExp("(\\s|^)" + classList[0] + "(\\s|$)");
-		el.className = el.className.replace(reg, " ");
-	}
-	if (classList.length > 1) {
-		Util.removeClass(el, classList.slice(1).join(" "));
-	}
-};
+		_classCallCheck(this, Util);
 
-// Inputs: HTML ELement, String, Boolean
-Util.toggleClass = function (el, className, bool) {
-	if (bool) Util.addClass(el, className);else Util.removeClass(el, className);
-};
+		this.inputs = inputs;
+	}
 
-// Inputs: HTML ELement, Object
-Util.setAttributes = function (el, attrs) {
-	for (var key in attrs) {
-		if (attrs[key]) {
-			el.setAttribute(key, attrs[key]);
+	/*
+ class manipulation functions
+ */
+	// Inputs: HTML ELement, String
+
+
+	_createClass(Util, [{
+		key: "hasClass",
+		value: function hasClass(el, className) {
+			if (el == null || className == null) {
+				console.warn("Make sure el (HTML Element) and className (string) are passed!");
+			} else {
+				if (el.classList) {
+					return el.classList.contains(className);
+				}
+				return !!el.className.match(new RegExp("(\\s|^)" + className + "(\\s|$)"));
+			}
+			return true;
 		}
-	}
-};
 
-/*
-  DOM manipulation
-*/
-// Inputs: HTML ELement, String
-Util.getChildrenByClassName = function (el, className) {
-	var childrenByClass = [];
-	for (var i = 0; i < el.children.length; i++) {
-		if (Util.hasClass(el.children[i], className)) {
-			childrenByClass.push(el.children[i]);
+		// Inputs: HTML ELement, String
+
+	}, {
+		key: "addClass",
+		value: function addClass(el, className) {
+			if (el == null || className == null) {
+				console.warn("Make sure el (HTML Element) and className (string) are passed!");
+			} else {
+				var classList = className.split(" ");
+				if (el.classList) {
+					el.classList.add(classList[0]);
+				} else if (!this.hasClass(el, classList[0])) {
+					el.className += " " + classList[0];
+				}
+				if (classList.length > 1) {
+					this.addClass(el, classList.slice(1).join(" "));
+				}
+			}
 		}
-	}
-	return childrenByClass;
-};
 
-Util.getAllChildrenNodes = function (element) {
-	return element.querySelectorAll("*");
-};
+		// Inputs: HTML ELement, String
 
-/*
-	Animate height of an element
-*/
-// Inputs: Integer, Integer, HTML ELement, Integer, Function
-Util.setHeight = function (start, to, element, duration, cb) {
-	var change = to - start;
-	var currentTime = void 0;
-
-	var animateHeight = function animateHeight(timestamp) {
-		if (!currentTime) {
-			currentTime = timestamp;
+	}, {
+		key: "removeClass",
+		value: function removeClass(el, className) {
+			if (el == null || className == null) {
+				console.warn("Make sure el (HTML Element) and className (string) are passed!");
+			} else {
+				var classList = className.split(" ");
+				if (el.classList) {
+					el.classList.remove(classList[0]);
+				} else if (this.hasClass(el, classList[0])) {
+					var reg = new RegExp("(\\s|^)" + classList[0] + "(\\s|$)");
+					el.className = el.className.replace(reg, " ");
+				}
+				if (classList.length > 1) {
+					this.removeClass(el, classList.slice(1).join(" "));
+				}
+			}
 		}
-		var progress = timestamp - currentTime;
-		var parseIntValue = progress / duration * (change + start);
-		var val = parseInt(parseIntValue, 10);
 
-		element.setAttribute("style", "height:" + val + "px;");
-		if (progress < duration) {
-			window.requestAnimationFrame(animateHeight);
-		} else {
-			cb();
+		// Inputs: HTML ELement, String, Boolean
+
+	}, {
+		key: "toggleClass",
+		value: function toggleClass(el, className, bool) {
+			if (el == null || className == null) {
+				console.warn("Make sure el (HTML Element) and className (string) are passed!");
+			} else if (bool) {
+				this.addClass(el, className);
+			} else {
+				this.removeClass(el, className);
+			}
 		}
-	};
 
-	// set the height of the element before starting animation -> fix bug on Safari
-	element.setAttribute("style", "height:" + start + "px;");
-	window.requestAnimationFrame(animateHeight);
-};
+		// Inputs: HTML ELement, Object
 
-/*
-	Smooth Scroll
-*/
-// Inputs: Integer, Integer, Function
-Util.scrollTo = function (final, duration, cb) {
-	var start = window.scrollY || document.documentElement.scrollTop;
-	var currentTime = void 0;
-
-	var animateScroll = function animateScroll(timestamp) {
-		if (!currentTime) {
-			currentTime = timestamp;
+	}, {
+		key: "setAttributes",
+		value: function setAttributes(el, attrs) {
+			if (el == null || attrs == null) {
+				console.warn("Make sure el (HTML Element) and attrs (Object {} ) are passed!");
+			} else {
+				for (var key in attrs) {
+					if (attrs[key]) {
+						el.setAttribute(key, attrs[key]);
+					}
+				}
+			}
 		}
-		var progress = timestamp - currentTime;
-		if (progress > duration) {
-			progress = duration;
+
+		/*
+   DOM manipulation
+  */
+		// Inputs: HTML ELement, String
+
+	}, {
+		key: "getChildrenByClassName",
+		value: function getChildrenByClassName(el, className) {
+			var childrenByClass = [];
+			if (el == null || className == null) {
+				console.warn("Make sure el (HTML Element) and className (string) are passed!");
+			} else {
+				for (var i = 0; i < el.children.length; i++) {
+					if (this.hasClass(el.children[i], className)) {
+						childrenByClass.push(el.children[i]);
+					}
+				}
+				return childrenByClass;
+			}
+			return childrenByClass;
 		}
-		var val = Math.easeInOutQuad(progress, start, final - start, duration);
+	}, {
+		key: "getAllChildrenNodes",
+		value: function getAllChildrenNodes() {
+			var element = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document.querySelector("body");
 
-		window.scrollTo(0, val);
+			return element.querySelectorAll("*");
+		}
 
-		if (progress < duration) {
+		/*
+  Animate height of an element
+  */
+		// Inputs: Integer, Integer, HTML ELement, Integer, Function
+
+	}, {
+		key: "setHeight",
+		value: function setHeight(start, to, element, duration, cb) {
+			if (start == null || to == null || element == null || duration == null || cb == null) {
+				console.warn("Inputs: Integer, Integer, HTML Element, Integer, Function");
+			} else {
+				var change = to - start;
+				var currentTime = void 0;
+
+				var animateHeight = function animateHeight(timestamp) {
+					if (!currentTime) {
+						currentTime = timestamp;
+					}
+					var progress = timestamp - currentTime;
+					var parseIntValue = progress / duration * (change + start);
+					var val = parseInt(parseIntValue, 10);
+
+					element.setAttribute("style", "height:" + val + "px;");
+					if (progress < duration) {
+						window.requestAnimationFrame(animateHeight);
+					} else {
+						cb();
+					}
+				};
+
+				// set the height of the element before starting animation -> fix bug on Safari
+				element.setAttribute("style", "height:" + start + "px;");
+				window.requestAnimationFrame(animateHeight);
+			}
+		}
+
+		/*
+  Smooth Scroll
+  */
+		// Inputs: Integer, Integer, Function
+
+	}, {
+		key: "scrollTo",
+		value: function scrollTo(final, duration, cb) {
+			var start = window.scrollY || document.documentElement.scrollTop;
+			var currentTime = void 0;
+
+			var animateScroll = function animateScroll(timestamp) {
+				if (!currentTime) {
+					currentTime = timestamp;
+				}
+				var progress = timestamp - currentTime;
+				if (progress > duration) {
+					progress = duration;
+				}
+				var val = Math.easeInOutQuad(progress, start, final - start, duration);
+
+				window.scrollTo(0, val);
+
+				if (progress < duration) {
+					window.requestAnimationFrame(animateScroll);
+				} else {
+					cb();
+				}
+			};
+
 			window.requestAnimationFrame(animateScroll);
-		} else {
-			cb();
 		}
-	};
 
-	window.requestAnimationFrame(animateScroll);
-};
+		/*
+   Focus utility classes
+  */
+		// Move focus to an element
+		// Inputs: HTML ELement
 
-/*
-  Focus utility classes
-*/
-// Move focus to an element
-// Inputs: HTML ELement
-Util.moveFocus = function (element) {
-	element.focus();
-	if (document.activeElement !== element) {
-		element.setAttribute("tabindex", "-1");
-		element.focus();
-	}
-};
+	}, {
+		key: "moveFocus",
+		value: function moveFocus(element) {
+			element.focus();
+			if (document.activeElement !== element) {
+				element.setAttribute("tabindex", "-1");
+				element.focus();
+			}
+		}
 
-/*
-  Misc
-*/
-// Inputs: Array, HTML ELement
-Util.getIndexInArray = function (array, el) {
-	return Array.prototype.indexOf.call(array, el);
-};
+		/*
+   Misc
+  */
+		// Inputs: Array, HTML ELement
 
-/*
-	Polyfills
-*/
-// Closest() method
-// if (!Element.prototype.matches) {
-// 	Element.prototype.matches =
-// 		Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-// }
+	}, {
+		key: "getIndexInArray",
+		value: function getIndexInArray(array, el) {
+			return Array.prototype.indexOf.call(array, el);
+		}
+	}]);
 
-// if (!Element.prototype.closest) {
-// 	Element.prototype.closest = function(s) {
-// 		var el = this;
-// 		if (!document.documentElement.contains(el)) return null;
-// 		do {
-// 			if (el.matches(s)) return el;
-// 			el = el.parentElement || el.parentNode;
-// 		} while (el !== null && el.nodeType === 1);
-// 		return null;
-// 	};
-// }
+	return Util;
+}();
 
-// //Custom Event() constructor
-// if (typeof window.CustomEvent !== "function") {
-// 	function CustomEvent(event, params) {
-// 		params = params || { bubbles: false, cancelable: false, detail: undefined };
-// 		var evt = document.createEvent("CustomEvent");
-// 		evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-// 		return evt;
-// 	}
-
-// 	CustomEvent.prototype = window.Event.prototype;
-
-// 	window.CustomEvent = CustomEvent;
-// }
-
-// /*
-// 	Animation curves
-// */
-// Math.easeInOutQuad = function(t, b, c, d) {
-// 	t /= d / 2;
-// 	if (t < 1) return (c / 2) * t * t + b;
-// 	t--;
-// 	return (-c / 2) * (t * (t - 2) - 1) + b;
-// };
+console.log("done");

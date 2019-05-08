@@ -42,12 +42,13 @@
 	if (mainHeader) {
 		var trigger = mainHeader.getElementsByClassName("js-main-header__nav-trigger")[0];
 		var nav = mainHeader.getElementsByClassName("js-main-header__nav")[0];
+		var newUtil = new Util();
 		// detect click on nav trigger
 		trigger.addEventListener("click", function (event) {
 			event.preventDefault();
-			var ariaExpanded = !Util.hasClass(nav, "main-header__nav--is-visible");
+			var ariaExpanded = !newUtil.hasClass(nav, "main-header__nav--is-visible");
 			// show nav and update button aria value
-			Util.toggleClass(nav, "main-header__nav--is-visible", ariaExpanded);
+			newUtil.toggleClass(nav, "main-header__nav--is-visible", ariaExpanded);
 			trigger.setAttribute("aria-expanded", ariaExpanded);
 			if (ariaExpanded) {
 				// opening menu -> move focus to first element inside nav
