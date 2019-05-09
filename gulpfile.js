@@ -39,7 +39,8 @@ gulp.task("createSCSS", function() {
 	return gulp.src("./main").pipe(
 		tap(function(file) {
 			const fileName = path.basename(`_${argv.fileName}.scss`);
-			const content = `#${argv.fileName}{}`;
+			const content = `#${argv.fileName}{}
+`;
 			return gulpFile(fileName, content).pipe(
 				gulp.dest("./main/assets/css/components", { overwrite: false })
 			);
@@ -184,7 +185,10 @@ gulp.task("mini-loader", function() {
 
 gulp.task("concat", function() {
 	return gulp
-		.src(["main/assets/js/components-min/*-min.js"])
+		.src([
+			"main/assets/js/components-min/util-min.js",
+			"main/assets/js/components-min/*-min.js"
+		])
 		.pipe(concat("combined-scripts.js"))
 		.pipe(gulp.dest("main/assets/js/combined-scripts"));
 });
@@ -194,6 +198,7 @@ gulp.task("linter", () => {
 		gulp
 			.src([
 				"main/assets/js/index.js",
+				"main/assets/js/util.js",
 				"main/assets/js/components/*.js",
 				"main/assets/js/loader-files/load-partials.js"
 			])
@@ -224,6 +229,7 @@ gulp.task(
 		gulp.watch("main/assets/js/load-partials.js", gulp.series(["linter"]));
 		gulp.watch("main/assets/js/components/*.js", gulp.series(["linter"]));
 		gulp.watch("main/assets/js/index.js", gulp.series(["scripts"]));
+		gulp.watch("main/assets/js/util.js", gulp.series(["scripts"]));
 		gulp.watch("main/assets/js/load-partials.js", gulp.series(["scripts"]));
 		gulp.watch("main/assets/js/components/*.js", gulp.series(["scripts"]));
 		gulp.watch("main/assets/js/dist/*.js", gulp.series(["mini"]));

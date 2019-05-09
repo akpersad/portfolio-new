@@ -42,13 +42,13 @@
 	if (mainHeader) {
 		const trigger = mainHeader.getElementsByClassName("js-main-header__nav-trigger")[0];
 		const nav = mainHeader.getElementsByClassName("js-main-header__nav")[0];
+		const newUtil = new Util();
 		// detect click on nav trigger
-		// debugger;
 		trigger.addEventListener("click", function(event) {
 			event.preventDefault();
-			const ariaExpanded = !Util.hasClass(nav, "main-header__nav--is-visible");
+			const ariaExpanded = !newUtil.hasClass(nav, "main-header__nav--is-visible");
 			// show nav and update button aria value
-			Util.toggleClass(nav, "main-header__nav--is-visible", ariaExpanded);
+			newUtil.toggleClass(nav, "main-header__nav--is-visible", ariaExpanded);
 			trigger.setAttribute("aria-expanded", ariaExpanded);
 			if (ariaExpanded) {
 				// opening menu -> move focus to first element inside nav
@@ -59,20 +59,3 @@
 		});
 	}
 })();
-
-/* exported scrollToElement */
-const scrollToElement = targetElement => {
-	const elementId = targetElement.getAttribute("data-scrollTo");
-	const element = document.querySelector(`#${elementId}`);
-	const nav = document.querySelector("#sticky-nav_nav");
-	const offset = nav.offsetHeight;
-	const bodyRect = document.body.getBoundingClientRect().top;
-	const elementRect = element.getBoundingClientRect().top;
-	const elementPosition = elementRect - bodyRect;
-	const offsetPosition = elementPosition - offset;
-
-	window.scrollTo({
-		top: offsetPosition,
-		behavior: "smooth"
-	});
-};

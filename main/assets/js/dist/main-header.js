@@ -42,13 +42,13 @@
 	if (mainHeader) {
 		var trigger = mainHeader.getElementsByClassName("js-main-header__nav-trigger")[0];
 		var nav = mainHeader.getElementsByClassName("js-main-header__nav")[0];
+		var newUtil = new Util();
 		// detect click on nav trigger
-		// debugger;
 		trigger.addEventListener("click", function (event) {
 			event.preventDefault();
-			var ariaExpanded = !Util.hasClass(nav, "main-header__nav--is-visible");
+			var ariaExpanded = !newUtil.hasClass(nav, "main-header__nav--is-visible");
 			// show nav and update button aria value
-			Util.toggleClass(nav, "main-header__nav--is-visible", ariaExpanded);
+			newUtil.toggleClass(nav, "main-header__nav--is-visible", ariaExpanded);
 			trigger.setAttribute("aria-expanded", ariaExpanded);
 			if (ariaExpanded) {
 				// opening menu -> move focus to first element inside nav
@@ -57,20 +57,3 @@
 		});
 	}
 })();
-
-/* exported scrollToElement */
-var scrollToElement = function scrollToElement(targetElement) {
-	var elementId = targetElement.getAttribute("data-scrollTo");
-	var element = document.querySelector("#" + elementId);
-	var nav = document.querySelector("#sticky-nav_nav");
-	var offset = nav.offsetHeight;
-	var bodyRect = document.body.getBoundingClientRect().top;
-	var elementRect = element.getBoundingClientRect().top;
-	var elementPosition = elementRect - bodyRect;
-	var offsetPosition = elementPosition - offset;
-
-	window.scrollTo({
-		top: offsetPosition,
-		behavior: "smooth"
-	});
-};

@@ -4,12 +4,13 @@ var sections = document.querySelector(".sections").querySelectorAll("section");
 var nav = document.querySelector("#sticky-nav_nav");
 var navHeight = nav.offsetHeight;
 var navTop = nav.offsetTop;
+var newUtil = new Util();
 
 var stickykNav = function stickykNav() {
 	if (window.pageYOffset >= navTop) {
-		nav.classList.add("position-fixed");
+		newUtil.addClass(nav, "position-fixed");
 	} else {
-		nav.classList.remove("position-fixed");
+		newUtil.removeClass(nav, "position-fixed");
 	}
 };
 
@@ -24,6 +25,21 @@ var isScrolledBottom = function isScrolledBottom() {
 	return false;
 };
 
+/* exported scrollToElement */
+var scrollToElement = function scrollToElement(targetElement) {
+	var elementId = targetElement.getAttribute("data-scrollTo");
+	var element = document.querySelector("#" + elementId);
+	var bodyRect = document.body.getBoundingClientRect().top;
+	var elementRect = element.getBoundingClientRect().top;
+	var elementPosition = elementRect - bodyRect;
+	var offsetPosition = elementPosition - navHeight - (window.pageYOffset >= navTop ? 0 : navHeight);
+
+	window.scrollTo({
+		top: offsetPosition,
+		behavior: "smooth"
+	});
+};
+
 window.addEventListener("scroll", function (event) {
 	var curPos = this.pageYOffset;
 	var len = sections.length;
@@ -35,11 +51,11 @@ window.addEventListener("scroll", function (event) {
 
 		if (curPos >= top && curPos <= bottom) {
 			for (var j = 0; j < anchorTags.length; j++) {
-				anchorTags[j].classList.remove("active");
+				newUtil.removeClass(anchorTags[j], "active");
 			}
 			document.querySelector("a." + sections[i].id).classList.add("active");
 		} else if (isScrolledBottom()) {
-			anchorTags[len - 2].classList.remove("active");
+			newUtil.removeClass(anchorTags[len - 2], "active");
 			document.querySelector("a." + sections[len - 1].id).classList.add("active");
 		}
 	}

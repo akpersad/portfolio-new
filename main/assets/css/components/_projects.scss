@@ -1,0 +1,71 @@
+#projects {
+  .projects-container {
+    padding-left: 5%;
+    @include breakpoint(sm-only) {
+      flex-direction: column;
+      flex-flow: wrap;
+      padding-left: 0;
+    }
+    .parallelogram {
+      width: 30%;
+      height: 100%;
+      transform: skew(-20deg);
+      background: var(--color-primary);
+      margin-left: 5px;
+      margin-right: 5px;
+      transition: 1s;
+      &.smaller-size {
+        width: 10% !important;
+        .smaller-size_text {
+          font-size: 2rem;
+          display: block !important;
+          @include breakpoint(md) {
+            transform: rotate(200deg);
+            font-size: 5rem;
+            writing-mode: vertical-lr;
+            text-orientation: sideways-right;
+            position: relative;
+            left: -25px;
+            top: 100px;
+            transition: 1s;
+          }
+        }
+        .onload-size_text {
+          display: none !important;
+        }
+        @include breakpoint(sm-only) {
+          height: 10% !important;
+          width: 100% !important;
+        }
+      }
+      &.larger-size {
+        width: 65% !important;
+        .onload-size_text {
+          display: none !important;
+        }
+        @include breakpoint(sm-only) {
+          height: 70%;
+          width: 100% !important;
+        }
+      }
+      .parallelogram-section {
+        transform: skew(20deg);
+        .onload-size_text {
+          display: block;
+        }
+        .smaller-size_text {
+          display: none;
+          transition: 1s;
+        }
+        @include breakpoint(sm-only) {
+          transform: skew(0);
+        }
+      }
+      @include breakpoint(sm-only) {
+        height: 30%;
+        width: 100%;
+        transform: skew(0);
+      }
+    }
+  }
+}
