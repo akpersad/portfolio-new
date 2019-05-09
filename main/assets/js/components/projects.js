@@ -1,3 +1,5 @@
+const newUtil = new Util();
+
 const hoverEvent = element => {
 	const className = element.classList[0];
 	const idName = element.id;
@@ -6,11 +8,9 @@ const hoverEvent = element => {
 	for (let i = 0; i < shapes.length; i++) {
 		const loopElement = shapes[i];
 		if (loopElement.id !== idName) {
-			loopElement.classList.add("smaller-size");
-			loopElement.classList.remove("larger-size");
+			newUtil.swapClasses(loopElement, "smaller-size", "larger-size");
 		} else {
-			loopElement.classList.remove("smaller-size");
-			loopElement.classList.add("larger-size");
+			newUtil.swapClasses(loopElement, "larger-size", "smaller-size");
 		}
 	}
 };
@@ -20,7 +20,6 @@ const removeHoverEvent = () => {
 	const shapes = document.querySelectorAll(shapesClass);
 	for (let i = 0; i < shapes.length; i++) {
 		const loopElement = shapes[i];
-		loopElement.classList.remove("larger-size");
-		loopElement.classList.remove("smaller-size");
+		newUtil.removeClass(loopElement, "larger-size smaller-size");
 	}
 };

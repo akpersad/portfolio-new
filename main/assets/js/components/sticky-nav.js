@@ -2,12 +2,13 @@ const sections = document.querySelector(".sections").querySelectorAll("section")
 const nav = document.querySelector("#sticky-nav_nav");
 const navHeight = nav.offsetHeight;
 const navTop = nav.offsetTop;
+const newUtil = new Util();
 
 const stickykNav = () => {
 	if (window.pageYOffset >= navTop) {
-		nav.classList.add("position-fixed");
+		newUtil.addClass(nav, "position-fixed");
 	} else {
-		nav.classList.remove("position-fixed");
+		newUtil.removeClass(nav, "position-fixed");
 	}
 };
 
@@ -53,11 +54,11 @@ window.addEventListener("scroll", function(event) {
 
 		if (curPos >= top && curPos <= bottom) {
 			for (let j = 0; j < anchorTags.length; j++) {
-				anchorTags[j].classList.remove("active");
+				newUtil.removeClass(anchorTags[j], "active");
 			}
 			document.querySelector(`a.${sections[i].id}`).classList.add("active");
 		} else if (isScrolledBottom()) {
-			anchorTags[len - 2].classList.remove("active");
+			newUtil.removeClass(anchorTags[len - 2], "active");
 			document.querySelector(`a.${sections[len - 1].id}`).classList.add("active");
 		}
 	}

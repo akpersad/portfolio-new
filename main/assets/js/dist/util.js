@@ -88,6 +88,16 @@ var Util = function () {
 				this.removeClass(el, className);
 			}
 		}
+	}, {
+		key: "swapClasses",
+		value: function swapClasses(el, classNameToAdd, classNameToRemove) {
+			if (el == null || classNameToAdd == null || classNameToRemove == null) {
+				console.warn("Make sure el (HTML Element) and classNameToAdd / classNameToRemove (string) are passed!");
+			} else {
+				this.addClass(el, classNameToAdd);
+				this.removeClass(el, classNameToRemove);
+			}
+		}
 
 		// Inputs: HTML ELement, Object
 
@@ -129,7 +139,7 @@ var Util = function () {
 	}, {
 		key: "getAllChildrenNodes",
 		value: function getAllChildrenNodes() {
-			var element = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document.querySelector("body");
+			var element = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document.body;
 
 			return element.querySelectorAll("*");
 		}

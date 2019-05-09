@@ -66,6 +66,17 @@ class Util {
 		}
 	}
 
+	swapClasses(el, classNameToAdd, classNameToRemove) {
+		if (el == null || classNameToAdd == null || classNameToRemove == null) {
+			console.warn(
+				"Make sure el (HTML Element) and classNameToAdd / classNameToRemove (string) are passed!"
+			);
+		} else {
+			this.addClass(el, classNameToAdd);
+			this.removeClass(el, classNameToRemove);
+		}
+	}
+
 	// Inputs: HTML ELement, Object
 	setAttributes(el, attrs) {
 		if (el == null || attrs == null) {
@@ -98,7 +109,7 @@ class Util {
 		return childrenByClass;
 	}
 
-	getAllChildrenNodes(element = document.querySelector("body")) {
+	getAllChildrenNodes(element = document.body) {
 		return element.querySelectorAll("*");
 	}
 
