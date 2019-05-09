@@ -197,5 +197,3 @@ class Util {
 		return Array.prototype.indexOf.call(array, el);
 	}
 }
-
-console.log("done");
