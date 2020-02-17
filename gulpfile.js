@@ -17,6 +17,8 @@ const gulpRename = require("gulp-rename");
 const gulpFile = require("gulp-file");
 const tap = require("gulp-tap");
 const path = require("path");
+const webpack = require("webpack-stream");
+const compiler = require("webpack");
 const { argv } = require("yargs");
 
 function reload(done) {
@@ -212,6 +214,17 @@ gulp.task("linter", () => {
 			// lint error, return the stream and pipe to failAfterError last.
 			.pipe(eslint.failAfterError())
 	);
+});
+
+gulp.task("webpack", function() {
+	return gulp
+		.src("main/assets/js/combined-scripts/combined-scripts.js")
+		.pipe(
+			webpack(require("./webpack.config.js"), compiler, function(err, stats) {
+				/* Use stats to do more things if needed */
+			})
+		)
+		.pipe(gulp.dest("dist/"));
 });
 
 gulp.task("everything", gulp.series(["scripts", "mini", "concat"]));
