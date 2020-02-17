@@ -194,4 +194,13 @@
       transition-delay: 0s;
     }
   }
+
+  .background-overlay {
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    z-index: 1000;
+    top: 0px;
+    overflow: hidden;
+  }
 }

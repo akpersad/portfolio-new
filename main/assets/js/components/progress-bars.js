@@ -1,8 +1,11 @@
 const newUtil = new Util();
+const pageOverlay = document.querySelector("#page-overlay");
 
 (() => {
 	const barWidth = document.querySelector(".health").offsetWidth;
+	const doc = document.body;
 	document.querySelector(".shade").style.width = barWidth;
+	pageOverlay.style.height = `${doc.offsetHeight}px`;
 })();
 
 function openModal(element, event) {
@@ -15,6 +18,8 @@ function openModal(element, event) {
 	if (modalWindow.classList) {
 		newUtil.addClass(modalWindow, "open d-block");
 	}
+
+	newUtil.swapClasses(pageOverlay, "background-overlay", "d-none");
 	event.preventDefault();
 }
 
