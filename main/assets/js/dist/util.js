@@ -243,5 +243,3 @@ var Util = function () {
 
 	return Util;
 }();
-
-console.log("done");

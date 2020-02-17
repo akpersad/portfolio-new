@@ -36,20 +36,26 @@
 // PLACEHHOLDER CSS FOR SECTIONS
 /* Sections */
 
-.sections section {
-  width: 100%;
-  padding: 50px;
-  background: #fff;
-  border-bottom: 1px solid #ccc;
-  height: 500px;
-  text-align: center;
-  &:nth-child(even) {
-    background: var(--color-contrast-medium);
-  }
-  &:nth-child(odd) {
-    background: var(--color-white-dark);
-  }
-  &::first-child {
-    margin-top: 60px;
+.sections {
+  #one,
+  #two,
+  #three,
+  #four,
+  #five {
+    width: 100%;
+    padding: 50px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    height: 500px;
+    text-align: center;
+    &:nth-child(even) {
+      background: var(--color-contrast-medium);
+    }
+    &:nth-child(odd) {
+      background: var(--color-white-dark);
+    }
+    &::first-child {
+      margin-top: 60px;
+    }
   }
 }

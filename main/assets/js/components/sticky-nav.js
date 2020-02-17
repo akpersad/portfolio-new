@@ -1,4 +1,4 @@
-const sections = document.querySelector(".sections").querySelectorAll("section");
+const sections = document.querySelector(".sections").querySelectorAll("section.section-parts");
 const nav = document.querySelector("#sticky-nav_nav");
 const navHeight = nav.offsetHeight;
 const navTop = nav.offsetTop;
@@ -56,10 +56,12 @@ window.addEventListener("scroll", function(event) {
 			for (let j = 0; j < anchorTags.length; j++) {
 				newUtil.removeClass(anchorTags[j], "active");
 			}
-			document.querySelector(`a.${sections[i].id}`).classList.add("active");
+			const temp1 = `a.${sections[i].id}`;
+			newUtil.addClass(document.querySelector(temp1), "active");
 		} else if (isScrolledBottom()) {
 			newUtil.removeClass(anchorTags[len - 2], "active");
-			document.querySelector(`a.${sections[len - 1].id}`).classList.add("active");
+			const temp2 = `a.${sections[len - 1].id}`;
+			newUtil.addClass(document.querySelector(temp2), "active");
 		}
 	}
 });

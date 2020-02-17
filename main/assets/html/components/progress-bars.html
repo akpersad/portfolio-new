@@ -1,0 +1,68 @@
+<div class="progress-bars-container">
+	<div class="content">
+		<section class="bars-container">
+			<b>applied gradient</b>
+			<div class="health">
+				<span class="progress-bar" style="width: 15%;">
+					<span class="shade warm"></span>
+				</span>
+			</div>
+
+			<b>applied gradient</b>
+			<div class="health">
+				<span class="progress-bar" style="width: 50%;">
+					<span class="shade warm"></span>
+				</span>
+			</div>
+
+			<b>applied gradient</b>
+			<div class="health">
+				<span class="progress-bar" style="width: 95%;">
+					<span class="shade warm"></span>
+				</span>
+			</div>
+		</section>
+	</div>
+
+	<div class="container mx-auto py-10">
+		<div class="flex justify-center">
+			<button
+				class="modal-trigger bg-teal hover:bg-teal-dark shadow text-white font-bold py-4 px-6 rounded no-underline"
+				onclick="openModal(this, event)"
+			>
+				Trigger Modal
+			</button>
+		</div>
+
+		<div
+			class="modal fade"
+			id="exampleModalCenter"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						...
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">
+							Close
+						</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="d-none" id="page-overlay"></div>
+</div>

@@ -1,6 +1,6 @@
 "use strict";
 
-var sections = document.querySelector(".sections").querySelectorAll("section");
+var sections = document.querySelector(".sections").querySelectorAll("section.section-parts");
 var nav = document.querySelector("#sticky-nav_nav");
 var navHeight = nav.offsetHeight;
 var navTop = nav.offsetTop;
@@ -53,10 +53,12 @@ window.addEventListener("scroll", function (event) {
 			for (var j = 0; j < anchorTags.length; j++) {
 				newUtil.removeClass(anchorTags[j], "active");
 			}
-			document.querySelector("a." + sections[i].id).classList.add("active");
+			var temp1 = "a." + sections[i].id;
+			newUtil.addClass(document.querySelector(temp1), "active");
 		} else if (isScrolledBottom()) {
 			newUtil.removeClass(anchorTags[len - 2], "active");
-			document.querySelector("a." + sections[len - 1].id).classList.add("active");
+			var temp2 = "a." + sections[len - 1].id;
+			newUtil.addClass(document.querySelector(temp2), "active");
 		}
 	}
 });
